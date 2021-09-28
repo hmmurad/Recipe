@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-danger" (click)="onAddNewRecipe()">
+      New Recipe
+    </button>
+  </div>
+</div>
+<hr />
+<div class="row my-3" *ngIf="recipes">
+  <div class="col-xs-12">
+    <div class="list-group">
+      <app-recipe-item
+        *ngFor="let recipe of recipes; let i = index"
+        [recipeItem]="recipe"
+        [index]="i"
+      ></app-recipe-item>
+    </div>
+  </div>
+</div>

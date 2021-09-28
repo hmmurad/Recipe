@@ -1,0 +1,19 @@
+<a
+  [routerLink]="[index]"
+  style="cursor: pointer"
+  class="list-group-item clearfix"
+  routerLinkActive="active"
+>
+  <div class="float-start">
+    <h5>{{ recipeItem.name }}</h5>
+    <p>{{ recipeItem.description }}</p>
+  </div>
+  <div class="float-end">
+    <img
+      [src]="recipeItem.imagePath"
+      alt="{{ recipeItem.name }}"
+      class="rounded"
+      style="max-height: 60px"
+    />
+  </div>
+</a>
