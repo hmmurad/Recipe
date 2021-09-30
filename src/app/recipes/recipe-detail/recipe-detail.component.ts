@@ -23,15 +23,21 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.recipe = this.recipeService.getRecipe(this.id);
+      console.log(this.recipe);
     });
   }
 
   addToShoppingList() {
     // this.recipeService.addIngredientToShoppingList(this.recipe.ingredient); //FRom via recipe service
-    this.slService.addIngredients(this.recipe.ingredient); //Direct from shopping list service
+    this.slService.addIngredients(this.recipe.ingredients); //Direct from shopping list service
   }
 
   onEditRecipe() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
