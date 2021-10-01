@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div class="row my-3">
+      <div class="row my-3" *ngIf="imagePath.value">
         <div class="col-xs-12">
           <img
             src="{{ imagePath.value }}"

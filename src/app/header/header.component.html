@@ -20,6 +20,11 @@
           >
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/auth" routerLinkActive="active"
+            >Authentication</a
+          >
+        </li>
+        <li class="nav-item">
           <a
             class="nav-link"
             routerLink="/shopping-list"
@@ -44,8 +49,24 @@
             class="dropdown-menu dropdown-menu-dark"
             aria-labelledby="navbarDarkDropdownMenuLink"
           >
-            <li><a class="dropdown-item" style="cursor: pointer">Save</a></li>
-            <li><a class="dropdown-item" style="cursor: pointer">Fetch</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                type="button"
+                (click)="onSaveData()"
+                >Save Recipe</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                type="button"
+                (click)="onFetchData()"
+                >Fetch Recipe</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
