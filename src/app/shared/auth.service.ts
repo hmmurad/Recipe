@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -28,27 +28,7 @@ export class AuthService {
         password: password,
         returnSecureToken: true,
       })
-      .pipe(
-        catchError((err) => {
-          let errMessage = 'An unknown error occured!';
-          if (!err.error || !err.error.error) {
-            return throwError(errMessage);
-          }
-          switch (err.error.error.message) {
-            case 'EMAIL_EXISTS':
-              errMessage = 'This email already exixts!';
-          }
-          switch (err.error.error.message) {
-            case 'OPERATION_NOT_ALLOWED':
-              errMessage = 'Your are not allowed!';
-          }
-          switch (err.error.error.message) {
-            case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-              errMessage = 'Too many attempts already done, please try later!';
-          }
-          return throwError(errMessage);
-        })
-      );
+      .pipe(catchError(this.errorHandler));
   }
 
   signIn(email: string, password: string) {
@@ -61,27 +41,35 @@ export class AuthService {
           returnSecureToken: true,
         }
       )
-      .pipe(
-        catchError((err) => {
-          let errMessage = 'An unknown error occured!';
-          if (!err.error || !err.error.error) {
-            return throwError(errMessage);
-          }
-          switch (err.error.error.message) {
-            case 'EMAIL_NOT_FOUND':
-              errMessage = 'This email is not found here!';
-          }
-          switch (err.error.error.message) {
-            case 'INVALID_PASSWORD':
-              errMessage =
-                'Your password is not correct, please try with right password!';
-          }
-          switch (err.error.error.message) {
-            case 'USER_DISABLED':
-              errMessage = 'Your account is disable by admin!';
-          }
-          return throwError(errMessage);
-        })
-      );
+      .pipe(catchError(this.errorHandler));
+  }
+
+  private errorHandler(errRes: HttpErrorResponse) {
+    let errMessage = 'An unknown error occured!';
+    if (!errRes.error || !errRes.error.error) {
+      return throwError(errMessage);
+    }
+    switch (errRes.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errMessage = 'Your email exists already!';
+        break;
+      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+        errMessage = 'Already you have tried too many times, please try later!';
+        break;
+      case 'OPERATION_NOT_ALLOWED':
+        errMessage = 'Your are not allowd here!';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errMessage = 'This email is not found here!';
+        break;
+      case 'INVALID_PASSWORD':
+        errMessage =
+          'Your password is not correct, please try with right password!';
+        break;
+      case 'USER_DISABLED':
+        errMessage = 'Your account is disable by admin!';
+        break;
+    }
+    return throwError(errMessage);
   }
 }
