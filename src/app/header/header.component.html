@@ -44,8 +44,22 @@
             class="dropdown-menu dropdown-menu-dark"
             aria-labelledby="navbarDarkDropdownMenuLink"
           >
-            <li><a class="dropdown-item" style="cursor: pointer">Save</a></li>
-            <li><a class="dropdown-item" style="cursor: pointer">Fetch</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="onSaveRecipes()"
+                >Save Recipe</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="onFetch()"
+                >Fetch Recipe</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
