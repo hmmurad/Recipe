@@ -11,7 +11,7 @@ export class DataStorageService {
   recipeUrl = 'https://mymenu-197f7.firebaseio.com/recipes.json';
   constructor(private http: HttpClient, private recipeService: RecipeService) {}
 
-  save() {
+  saveRecipe() {
     const recipes = this.recipeService.getRecipes();
     this.http.put(this.recipeUrl, recipes).subscribe((res) => {
       console.log(res);

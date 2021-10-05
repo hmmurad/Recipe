@@ -4,7 +4,7 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { StorageDataService } from '../shared/storage-data.service';
+import { DataStorageService } from '../shared/data-storage.service';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
@@ -13,7 +13,7 @@ import { RecipeService } from './recipe.service';
 })
 export class RecipesResolverService implements Resolve<Recipe[]> {
   constructor(
-    private dataStorageService: StorageDataService,
+    private dataStorageService: DataStorageService,
     private recipeService: RecipeService
   ) {}
 

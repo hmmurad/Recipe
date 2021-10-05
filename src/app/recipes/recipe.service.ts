@@ -8,12 +8,8 @@ import { Recipe } from './recipe.model';
   providedIn: 'root',
 })
 export class RecipeService {
-<<<<<<< HEAD
-  recipeschanged = new Subject<Recipe[]>();
-
-=======
   recipeChanged = new Subject<Recipe[]>();
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
+
   private recipes: Recipe[] = [
     // new Recipe(
     //   'A new recipe',
@@ -33,14 +29,9 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
-<<<<<<< HEAD
-    this.recipeschanged.next(this.recipes.slice());
-  }
-=======
     this.recipeChanged.next(this.recipes.slice());
   }
 
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
   getRecipes() {
     return this.recipes;
   }
@@ -53,14 +44,6 @@ export class RecipeService {
     this.slService.addIngredients(ingredients);
   }
 
-<<<<<<< HEAD
-  addRecipe() {}
-  updateRecipe(index: number) {}
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
-    this.recipeschanged.next(this.recipes.slice());
-=======
   addRecipe(newRecipe: Recipe) {
     this.recipes.push(newRecipe);
     this.recipeChanged.next(this.recipes.slice());
@@ -73,6 +56,5 @@ export class RecipeService {
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
     this.recipeChanged.next(this.recipes.slice());
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
   }
 }

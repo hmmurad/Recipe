@@ -14,14 +14,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isloggedIn">
           <a class="nav-link" routerLink="/recipes" routerLinkActive="active"
             >Recipe</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/auth" routerLinkActive="active"
-            >Authentication</a
           >
         </li>
         <li class="nav-item">
@@ -34,7 +29,12 @@
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
+        <li class="nav-item" *ngIf="!isloggedIn">
+          <a class="nav-link" routerLink="/auth" routerLinkActive="active"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item dropdown" *ngIf="isloggedIn">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -53,12 +53,8 @@
               <a
                 class="dropdown-item"
                 style="cursor: pointer"
-<<<<<<< HEAD
-                (click)="onSaveRecipes()"
-=======
                 type="button"
                 (click)="onSaveData()"
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
                 >Save Recipe</a
               >
             </li>
@@ -66,13 +62,18 @@
               <a
                 class="dropdown-item"
                 style="cursor: pointer"
-<<<<<<< HEAD
-                (click)="onFetch()"
-=======
                 type="button"
                 (click)="onFetchData()"
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
                 >Fetch Recipe</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                type="button"
+                (click)="onLogout()"
+                >Logout</a
               >
             </li>
           </ul>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'RecipeApp';
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.autoLogin();
+  }
 }
+
+// autologout() => this.const = setTimeOut(, timener)
+//logout() => if(this.const) {clearOUt(this.const)} return this.autolouout(null)
+//authenticated => this.autologout(exipresIn * 1000)
+//autologin() {const expirationDuration, this.autologout(this.expirationDuration)}

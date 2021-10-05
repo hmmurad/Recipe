@@ -1,10 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-=======
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 
@@ -92,21 +88,10 @@ export class RecipeEditComponent implements OnInit {
       }
     }
     this.recipeForm = new FormGroup({
-<<<<<<< HEAD
-      name: new FormControl(recipeName),
-      imagePath: new FormControl(recipeImagePath),
-      description: new FormControl(recipeDescription),
-      ingredients: new FormControl(recipeIngredients),
-=======
       name: new FormControl(recipeName, Validators.required),
       imagePath: new FormControl(recipeImagePath, Validators.required),
       description: new FormControl(recipeDescription, Validators.required),
       ingredients: recipeIngredients,
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
     });
-  }
-
-  onCancel() {
-    this.loc.back();
   }
 }

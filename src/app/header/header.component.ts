@@ -1,40 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { StorageDataService } from '../shared/storage-data.service';
-=======
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-<<<<<<< HEAD
-  constructor(private dataStorage: StorageDataService) {}
+export class HeaderComponent implements OnInit, OnDestroy {
+  isloggedIn = false;
+  subscription: Subscription;
+  constructor(
+    private dataStorage: DataStorageService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    // this.onFetch();
-  }
-
-  onSaveRecipes() {
-    this.dataStorage.saveRecipes();
-  }
-
-  onFetch() {
-=======
-  constructor(private dataStorage: DataStorageService) {}
-
-  ngOnInit() {
-    this.dataStorage.fetchRecipes();
+    this.subscription = this.authService.user.subscribe((user) => {
+      this.isloggedIn = !!user;
+    });
   }
 
   onSaveData() {
-    this.dataStorage.save();
+    this.dataStorage.saveRecipe();
   }
 
   onFetchData() {
->>>>>>> 48970395524d54c05e86c4b7ec3ae69230924f0f
-    this.dataStorage.fetchRecipes().subscribe();
+    this.dataStorage.fetchRecipes().subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
